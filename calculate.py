@@ -63,7 +63,9 @@ class InsuranceRepo:
                         highest_age_member_rate = entry.get("Rate")
                 final_total = highest_age_member_rate + discount_total_amount
             response = {"final_total": final_total}
+            success = True
         except Exception as error:
             print(error)
             response = "Something went wrong while calculating premium amount"
-        return True, response
+            success = False
+        return success, response
