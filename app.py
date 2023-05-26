@@ -11,9 +11,9 @@ app = Flask(__name__)
 
 app.config[
     "MONGO_URI"
-] = "mongodb+srv://gforce:zmxncbv@cluster0.mrswx8k.mongodb.net/gforce"
+] = "mongodb+srv://gforce:zmxncbv@cluster0.mrswx8k.mongodb.net/gforce?tlsAllowInvalidCertificates=true"
 
-mongo = PyMongo(app, ssl=True)
+mongo = PyMongo(app)
 
 
 @app.route("/")
