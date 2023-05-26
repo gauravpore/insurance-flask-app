@@ -31,3 +31,5 @@ or
 ```
 python3 app.py
 ```
+### 🔸Refer to the postman collection here --> [collection link](https://github.com/gauravpore/insurance-flask-app/blob/master/Insurance%20Flask%20API.postman_collection.json)
+You can directly download and import the collection into postman and test the API.
