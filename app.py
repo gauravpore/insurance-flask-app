@@ -1,9 +1,8 @@
-from flask import Flask
+from flask import Flask, jsonify, request
+
 from flask_pymongo import PyMongo
-from flask import jsonify, request
-from bson import json_util
-import json
 from flask_cors import cross_origin
+
 from calculate import InsuranceRepo
 
 app = Flask(__name__)
@@ -24,6 +23,9 @@ def hello_world():
 @app.route("/calculate-premium/", methods=["POST"])
 @cross_origin()
 def get_premium():
+    """
+    Endpoint to calculate premimum amount for given parameters
+    """
     request_data = request.json
     print(request_data)
     ages = request_data.get("age")
@@ -31,15 +33,22 @@ def get_premium():
     city_tier = request_data.get("city_tier")
     tenure = request_data.get("tenure")
     if not ages or not sum_insured or not city_tier or not tenure:
-        # Return Invalid Prams response
-        pass
+        error_response = {"code": 400, "message": "Invalid Parameters"}
+        return jsonify(error_response), 400
     success, response = InsuranceRepo.calculate_premium_amount(
         mongo_db=mongo, ages=ages, city_tier=1, sum_insured=sum_insured, tenure=tenure
     )
     if not success:
-        pass
-    return response
+        error_response = {"code": 400, "message": response}
+        return jsonify(error_response), 400
+    success_response = {
+        "code": 200,
+        "response": response,
+        "message": "Premimum amount calculated successfully",
+    }
+    return jsonify(success_response), 200
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # setting this for production
+    app.run(debug=False)

@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "9126f73a-fe9d-45cb-b681-6f8fadd1460e",
+		"name": "Insurance Flask API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Calculate Insurance Premium",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"age\":[46,35,10],\n    \"sum_insured\":500000,\n    \"city_tier\":1,\n    \"tenure\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{localhost}}/calculate-premium",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"calculate-premium"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "API - Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"age\":[46,35,10],\n    \"sum_insured\":500000,\n    \"city_tier\":1,\n    \"tenure\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/calculate-premium",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"calculate-premium"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.3.4 Python/3.9.5"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 26 May 2023 19:06:53 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "100"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"message\": \"Premimum amount calculated successfully\",\n    \"response\": {\n        \"final_total\": 22933\n    }\n}"
+				},
+				{
+					"name": "API - Failure",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"age\":[],\n    \"sum_insured\":500000,\n    \"city_tier\":\"1\",\n    \"tenure\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/calculate-premium",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"calculate-premium"
+							]
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.3.4 Python/3.9.5"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 26 May 2023 19:08:29 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 400,\n    \"message\": \"Invalid Parameters\"\n}"
+				},
+				{
+					"name": "Invalid Parameters",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"age\":[],\n    \"sum_insured\":500000,\n    \"tenure\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/calculate-premium",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"calculate-premium"
+							]
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.3.4 Python/3.9.5"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 26 May 2023 19:09:02 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 400,\n    \"message\": \"Invalid Parameters\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localhost",
+			"value": "http://127.0.0.1:5000"
+		},
+		{
+			"key": "prod",
+			"value": "https://insurance-flask-app.onrender.com"
+		}
+	]
+}
