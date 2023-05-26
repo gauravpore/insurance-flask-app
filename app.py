@@ -13,7 +13,7 @@ app.config[
     "MONGO_URI"
 ] = "mongodb+srv://gforce:zmxncbv@cluster0.mrswx8k.mongodb.net/gforce"
 
-mongo = PyMongo(app)
+mongo = PyMongo(app, ssl=True)
 
 
 @app.route("/")
